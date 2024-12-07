@@ -1,15 +1,29 @@
-<table>
-    <thead>
-        <tr>
-            <th>리뷰</th> <th>작성일</th>
-        </tr>
-    </thead>
-    <tbody>
-        <% reviews.forEach(review => { %>
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+    <meta charset="UTF-8">
+    <title>나의 리뷰</title>
+</head>
+<body>
+    <table>
+        <thead>
             <tr>
-                <td><%= review.review_text %></td>
-                <td><%= review.created_at %></td>
+                <th>구매자 ID</th>
+                <th>평점</th>
+                <th>리뷰</th> 
+                <th>작성일</th>
             </tr>
-        <% }) %>
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            <% reviews.forEach(review => { %>
+                <tr>
+                    <td><%= review.buyer_id%></td>
+                    <td><%= review.score %></td>
+                    <td><%= review.content %></td>
+                    <td><%= review.created_at %></td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</body>
+</html>

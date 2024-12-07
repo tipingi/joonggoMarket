@@ -14,14 +14,25 @@
     <h2>프로필</h2>
     <p>이름: <%= userInfo.name %></p>
     <p>자기소개: <%= userInfo.intro %></p>
+    <a href="/editInfo">편집</a>
+  </div>
+
+  <!-- 내 정보 -->
+  <div>
+    <h3>내 정보</h3>
+    <ul>
+      <li><a href="/pointManage">계좌 관리</a></li>
+      <li><a href="/postManage">나의 게시글</a></li>
+      <li><a href="/reviewManage">리뷰 관리</a></li>
+    </ul>
   </div>
 
   <!-- 판매 내역 -->
   <div>
     <h2>판매 내역</h2>
     <ul>
-      <% sellHistory.forEach(item => { %>
-        <li><%= item.product_name %> - <%= item.created_at %></li>
+      <% sellHistory.forEach(sale => { %>
+        <li><%= sale.product_name %> - <%= sale.created_at %></li>
       <% }) %>
     </ul>
   </div>
@@ -30,8 +41,8 @@
   <div>
     <h2>구매 내역</h2>
     <ul>
-      <% buyHistory.forEach(item => { %>
-        <li><%= item.product_name %> - <%= item.created_at %></li>
+      <% buyHistory.forEach(purchase => { %>
+        <li><%= purchase.product_name %> - <%= purchase.created_at %></li>
       <% }) %>
     </ul>
   </div>

@@ -22,6 +22,25 @@
     <div class="dashboard-content">
         <h2>Your Dashboard</h2>
         <!-- 추가 콘텐츠를 여기에 추가 -->
+        <a href="/board">더보기</a>
+        <table>
+            <thead>
+                <tr>
+                    <th>제목</th>
+                    <th>사용자 ID</th>
+                    <th>날짜</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% boardPosts.forEach(post=> { %>
+                    <tr>
+                        <td><%= post.title %></td>
+                        <td><%= post.user_id %></td>
+                        <td><%= post.created_at %></td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
     </div>
 
     <script>

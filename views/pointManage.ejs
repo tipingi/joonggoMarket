@@ -1,12 +1,22 @@
-<p>보유 포인트: <%= points %></p>
-<form method="POST" action="/pointManage/charge">
-    <label>충전 금액: 
-        <select name="amount">
-            <option value="1000">1000</option>
-            <option value="2000">2000</option>
-            <option value="5000">5000</option>
-            <option value="10000">10,000</option>
-        </select>
-    </label>
-    <button type = "submit">충전</button>
-</form>
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <meta charset="UTF-8">
+        <title>계좌 관리</title>
+    </head>
+    <body>
+        <h1>포인트 관리</h1>
+        <p>보유 포인트: <%= wallet.balance %></p>
+        <form method="POST" action="/pointManage/charge">
+            <label>충전 금액: 
+                <select name="amount">
+                    <option value="1000">1000</option>
+                    <option value="2000">2000</option>
+                    <option value="5000">5000</option>
+                    <option value="10000">10,000</option>
+                </select>
+            </label>
+            <button type = "submit">충전</button>
+        </form>
+    </body>
+</html>
