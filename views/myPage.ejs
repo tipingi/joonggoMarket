@@ -1,23 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Page</title>
   <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
+
 <body>
   <h1>마이 페이지</h1>
 
-  <!-- 프로필 -->
-  <div>
-    <h2>프로필</h2>
-    <p>이름: <%= userInfo.name %></p>
-    <p>자기소개: <%= userInfo.intro %></p>
-    <a href="/editInfo">편집</a>
-  </div>
-
-  <!-- 내 정보 -->
   <div>
     <h3>내 정보</h3>
     <ul>
@@ -27,24 +20,46 @@
     </ul>
   </div>
 
-  <!-- 판매 내역 -->
+  <div>
+    <h2>프로필</h2>
+    <p>ID: <%=userInfo.id %>
+    </p>
+    <p>이름: <%= userInfo.name %>
+    </p>
+    <p>이메일: <%= userInfo.email %>
+    </p>
+    <p>전화번호: <%= userInfo.phone_no %>
+    </p>
+    <p>우편번호: <%= userInfo.post_code %>
+    </p>
+    <p>주소: <%= userInfo.address %>
+    </p>
+    <p>가입일: <%= userInfo.init_at %>
+    </p>
+    <a href="/editInfo">편집</a>
+  </div>
+
   <div>
     <h2>판매 내역</h2>
     <ul>
-      <% sellHistory.forEach(sale => { %>
-        <li><%= sale.product_name %> - <%= sale.created_at %></li>
-      <% }) %>
+      <% sellHistory.forEach(history=> { %>
+        <li>
+          <%= history.product_name %> - <%= history.created_at %>
+        </li>
+        <% }) %>
     </ul>
   </div>
 
-  <!-- 구매 내역 -->
   <div>
     <h2>구매 내역</h2>
     <ul>
-      <% buyHistory.forEach(purchase => { %>
-        <li><%= purchase.product_name %> - <%= purchase.created_at %></li>
-      <% }) %>
+      <% buyHistory.forEach(history=> { %>
+        <li>
+          <%= history.product_name %> - <%= history.transaction_at %>
+        </li>
+        <% }) %>
     </ul>
   </div>
 </body>
+
 </html>

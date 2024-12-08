@@ -21,6 +21,7 @@ router.post('/login', async (req, res) => {
 
         // 사용자 세션에 정보 저장
         req.session.user = {
+            user_id: user.user_id,
             id: user.id,
             name: user.name,
             email: user.email,

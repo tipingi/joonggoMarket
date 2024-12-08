@@ -4,8 +4,10 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 require('dotenv').config();
 
-const authRoutes = require('./routes/authRoutes'); // 로그인 관련 라우트
-const dashboardRoutes = require('./routes/dashboardRoutes'); // 대시보드 라우트
+const authRoutes = require('./routes/authRoutes');
+const dashboardRoutes = require('./routes/dashboardRoutes');
+const mypageRoutes = require('./routes/mypageRoutes');
+const messageRoutes = require('./routes/messageRoutes');
 
 const app = express();
 
@@ -23,7 +25,7 @@ app.use(bodyParser.json());
 // 세션 설정
 app.use(
     session({
-        secret: 'your-secret-key', // 임의의 비밀키 설정
+        secret: process.env.SESSION_SECRET,
         resave: false,
         saveUninitialized: true,
     })
@@ -32,6 +34,8 @@ app.use(
 // 라우트 설정
 app.use('/', authRoutes);
 app.use('/', dashboardRoutes);
+app.use('/', mypageRoutes);
+app.use('/', messageRoutes);
 
 // 서버 실행
 const PORT = process.env.PORT || 5000;
