@@ -20,14 +20,12 @@ router.get('/mypage', isAuthenticated, async (req, res) => {
         const [userInfo] = await pool.query(
             'SELECT id, name, email, phone_no, post_code, address, DATE_FORMAT(init_at, "%Y-%m-%d %H:%i:%s") AS init_at ' +
             'FROM tbl_user WHERE user_id = ?', [user.user_id]);
-            console.log(userInfo); // 빈 배열인지 확인
 
         // 판매 중인 내역 5개
         const [sellHistory] = await pool.query(
             'SELECT tpr.name as product_name, DATE_FORMAT(tpr.created_at, "%Y-%m-%d %H:%i:%s") AS created_at ' +
             'FROM tbl_product tpr inner join tbl_user tur on tpr.seller_id = tur.user_id ' +
             'where tpr.status_id = 1 and tpr.seller_id = ? ORDER BY tpr.created_at DESC LIMIT 5', [user.user_id]);
-            console.log(sellHistory); // 빈 배열인지 확인
 
         // 구매 내역 5개
         const [buyHistory] = await pool.query(
@@ -35,7 +33,6 @@ router.get('/mypage', isAuthenticated, async (req, res) => {
             'FROM tbl_transaction ttr inner join tbl_user tur on ttr.buyer_id = tur.user_id ' +
             'inner join tbl_product tpr on ttr.product_id = tpr.product_id ' +
             'where ttr.status = 1 and tur.user_id = ? ORDER BY ttr.transaction_at DESC LIMIT 5', [user.user_id]);
-            console.log(buyHistory); // 빈 배열인지 확인
 
         res.render('mypage', {
             user,
