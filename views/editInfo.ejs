@@ -3,15 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <title>내 정보 편집</title>
+    <style>
+        /* All layout */
+        body{
+            font-family: Arial, sans-serif;
+            margin:0;
+            padding:0;
+            background-color: #f9f9f9;
+        }
+
+        .container{
+            width:50%;
+            margin: 30% auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #fff;
+            box-shadow: 0px 2px 4px rgba(0,0,0,0.1);
+        }
+        h1{
+            font: size 1.5em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        form{
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        label{
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        input[type="text"],
+        input[type="email"]{
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        textarea{
+            width: 100%;
+            height: 80px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .postal-code input{
+            flex:1;
+        }
+
+        button{
+            width: 100px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #ffa07a;
+            color:white;
+            font-weight: bold;
+            cursor: pointer;
+            align-self: center;
+        }
+        button:hover{
+            background-color: #ff7f50;
+        }
+    </style>
 </head>
 <body>
-    <h1>내 정보 편집</h1>
-    <form method = "POST" action = "/editInfo">
-        <label>이름: <input type = "text" name = "name" value = "<%= userInfo.name %>"></label><br>
-        <label>이메일: <input type = "email" name = "email" value = "<%= userInfo.email %>"></label><br>
-        <label>전화번호: <input type = "text" name = "phone" value = "<%= userInfo.phone %>"></label><br>
-        <label>주소: <input type = "text" name = "address" value = "<%= userInfo.address %>"></label><br>
-        <button type = "submit">저장</button>
-    </form>
+    <div class = "container">
+        <h1>내 정보 편집</h1>
+        <form method = "POST" action = "/editInfo">
+            <label for ="user_id">유저 ID: </label>
+            <input type = "text" id = "user_id" name = "user_id" value = "<%= userInfo.id %>" readonly>
+            <label for="password">비밀번호: </label>
+            <input type="password" id="password" name="password">
+            <label for="name">이름: </label>
+            <input type = "text" id = "name" name = "name" value = "<%= userInfo.name %>">
+            <label for ="phone">전화번호:</label>
+            <input type = "text" name = "phone" value = "<%= userInfo.phone %>"></label><br>
+            <label for = "email">이메일:</label> 
+            <input type = "email" name = "email" value = "<%= userInfo.email %>">
+            <label for="address">주소: </label>
+            <div class = "postal-code">
+                <input type="text" id="postal-code" name = "postal-code" placeholder="우편번호">
+                <textarea id = "address" name = "address"><%= userInfo.address %></textarea>
+            </div>
+            <button type = "submit">저장</button>
+        </form>
+    </div>
 </body>
 </html>

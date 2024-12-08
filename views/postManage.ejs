@@ -3,33 +3,58 @@
     <head>
         <meta charset="UTF-8">
         <title>나의 게시글</title>
+        <link rel="stylesheet" href="/styles/main.css">
+        <style>
+            .container{
+                background-color: antiquewhite;
+            }
+            h1,h2{
+                margin-bottom: 20px;
+            }
+            table{
+                width: 80%;
+                border-collapse: collapse;
+                margin-top: 20px;
+            }
+            table th, table td{
+                border: 1px solid #ddd;
+                text-align: middle;
+                padding: 10px;
+            }
+            table th{
+                background-color: orange;
+            }
+        </style>
     </head>
     <body>
-        <h1>게시글 관리/h1>
-        <form method="POST" action="/postManage/delete">
-            <table>
-                <thead>
-                    <tr>
-                        <th>게시글 ID</th>
-                        <th>제목</th>
-                        <th>작성일</th>
-                        <th>조회수/th>
-                        <th>삭제</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% posts.forEach(post => {
+        <div class="container">
+            <h1>게시글 관리</h1>
+            <form action="/posts" method="POST">
+                <table>
+                    <thead>
                         <tr>
-                            <td><%= post.board_id %></td>
-                            <td><%= post.title %></td>
-                            <td><%= post.created_at %></td>
-                            <td><%= post.view_count %></td>
-                            <td><input type = "checkbox" name = "postIds" value = "<%= post.id %>"></td>
+                            <th>게시글 ID</th>
+                            <th>제목</th>
+                            <th>작성일</th>
+                            <th>조회수</th>
+                            <th>삭제</th>
                         </tr>
-                    <% }) %>
-                </tbody>
-            </table>
-            <button type = "submit">삭제</button>
-        </form>
+                    </thead>
+                    <tbody>
+                        <% posts.forEach(post => {
+                            <tr>
+                                <td><%= post.board_id %></td>
+                                <td><%= post.title %></td>
+                                <td><%= post.created_at %></td>
+                                <td><%= post.view_count %></td>
+                                <td><input type = "checkbox" name = "postIds" value = "<%= post.id %>"></td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+                <button type = "button">글쓰기</button>
+                <button type = "submit">삭제</button>
+            </form>
+        </div>
     </body>
 </html>

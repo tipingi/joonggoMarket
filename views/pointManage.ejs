@@ -3,20 +3,92 @@
     <head>
         <meta charset="UTF-8">
         <title>계좌 관리</title>
+        <link rel="stylesheet" href="/styles/main.css">
+        <style>
+            /*전체 레이아웃*/
+            .container{
+                width: 80%;
+                margin: 20px auto;
+                padding: 20px;
+                border:1px solid #ddd;
+                border-radius: 8px;
+                box-shadow: 0px 2px 4px rgba(0,0,0,0.1);
+                background-color: #fdfdfd;
+            }
+            h1,h2{
+                margin-bottom: 20px;
+            }
+            /*포인트 섹션*/
+            .point{
+                border: 1px solid #ddd;
+                padding: 15px;
+                margin-bottom: 20px;
+                background-color: antiquewhite;
+                border-radius: 8px;
+            }
+            .points form{
+                margin-top: 10px;
+            }
+
+            /*테이블 스타일*/
+            table{
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 20px;
+            }
+            table th, table td{
+                border: 1px solid #ddd;
+                text-align: middle;
+                padding: 10px;
+            }
+            table th{
+                background-color: orange;
+            }
+            table tbody tr:nth-child(even){
+                background-color: gold;
+            }
+        </style>
     </head>
     <body>
-        <h1>포인트 관리</h1>
-        <p>보유 포인트: <%= wallet.balance %></p>
-        <form method="POST" action="/pointManage/charge">
-            <label>충전 금액: 
-                <select name="amount">
-                    <option value="1000">1000</option>
-                    <option value="2000">2000</option>
-                    <option value="5000">5000</option>
-                    <option value="10000">10,000</option>
-                </select>
-            </label>
-            <button type = "submit">충전</button>
-        </form>
+        <div class="container">
+            <div class = "point">
+                <h1>포인트</h1>
+                <p>보유 포인트: <%= wallet.balance %></p>
+                <form action="/wallet" method="POST" >
+                    <label>충전 포인트: 
+                        <select name="balance">
+                            <option value="1000">1000</option>
+                            <option value="2000">2000</option>
+                            <option value="5000">5000</option>
+                            <option value="10000">10,000</option>
+                        </select>
+                    </label>
+                    <input type = "submit" value ="충전하기" />
+                </form>
+            </div>
+            <div class="history">
+                <h2>사용 내역</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>거래 제품</th>
+                            <th>유저 ID</th>
+                            <th>소비 포인트</th>
+                            <th>거래 날짜</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <%= history.forEach(record=>{ %>
+                        <tr>
+                            <td><%= record.transaction_id %></td>
+                            <td><%= record.user_id %></td>
+                            <td><%= record.amount %></td>
+                            <td><%= record.transaction_at %></td>
+                        </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </body>
 </html>
