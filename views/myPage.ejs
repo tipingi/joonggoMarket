@@ -5,72 +5,28 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Page</title>
-  <link rel="stylesheet" href="/stylesheets/style.css">
-  <style>
-    .container{
-      display: flex;
-      justify-content: space-between;
-      padding: 20px;
-      gap:40px; /* 두 컬럼 사이 간격 */
-    }
-    /*왼쪽 컬럼(내 정보 및 프로필)*/
-    .left-column{
-      flex: 1; /* 크기 자동 조정 */
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-    }
-    .Right-Column{
-      flex: 1; /* 동일 너비 */
-      display: flex;
-      flex-direction: column;
-      gap: 20px; /* 두 섹션 간 간격 */
-    }
-    .information{
-      background-color: antiquewhite;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-    }
-    .profile{
-      background-color: antiquewhite;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-    }
-    .history{
-      background-color: antiquewhite;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-    }
-    .history h2{
-      margin-bottom: 15px;
-      font-size: 1.2em;
-    }
-    .history ul{
-      list-style: none;
-      padding:0;
-    }
-    .history li{
-      margin-bottom: 10px;
-    }
-  </style>
+  <link rel="stylesheet" href="/stylesheets/mypage.css">
 </head>
 
 <body>
   <h1>마이 페이지</h1>
+  
+  
   <div class = "container">
-    <div cladd="left-column">
+    <div class="left-column">
       <div class = "information">
-        <h3>내 정보</h3>
+        <div class= "box">
+          <h3>내 정보</h3>
+        </div>
         <ul>
           <li><a href="/wallet">계좌 관리</a></li>
-          <li><a href="/post">나의 게시글</a></li>
+          <li><a href="/post">내 게시글</a></li>
           <li><a href="/reviews">리뷰 관리</a></li>
         </ul>
       </div>
+    </div>
 
+    <div class = "Right-Column">
       <div class = "profile">
         <h2>프로필</h2>
         <p>ID: <%=userInfo.id %>
@@ -89,24 +45,28 @@
         </p>
         <a href="/editInfo">편집</a>
       </div>
-    </div>
 
-    <div class = "Right-Column">
       <div class = "history">
         <h2>판매 내역</h2>
-        <ul>
-          <% sellHistory.forEach(history=> { %>
-            <li><strong>판매 제품: </strong> <%= history.product_name %>, <strong>판매일자: </strong><%= history.transaction_at %></li>
-          <% }) %>
-        </ul>
+        <% sellHistory.forEach(history=> { %>
+          <div class = "sold">
+            <p>판매 제품: <%= history.product_name %>
+            </p>
+            <p>판매일자: <%= history.transaction_at %>
+            </p>
+          </div>
+        <% }) %>
       </div>
       <div class = "history">
         <h2>구매 내역</h2>
-        <ul>
-          <% buyHistory.forEach(history=> { %>
-            <li><strong>구매 제품: </strong> <%= history.product_name %>, <strong>구매일자: </strong><%= history.transaction_at %></li>
-          <% }) %>
-       </ul>
+        <% buyHistory.forEach(history=>{ %>
+          <div class = "bought">
+            <p>구매 제품: <%= history.product_name %>
+            </p>
+            <p>구매일자: <%= history.transaction_at %>
+            </p>
+          </div>
+        <% }) %>
       </div>
     </div>
   </div>
