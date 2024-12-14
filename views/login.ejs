@@ -4,11 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="/stylesheets/login.css">
 </head>
 <body>
-    <div class="login-container">
-        <h1>Login</h1>
+    <header>
+        <div id ="login-container">
+            <h1>Login</h1>
+        </div>
+    </header>
+    <div id = "login-container2"></div>
         <% if (error) { %>
             <p style="color: red;"><%= error %></p>
         <% } %>

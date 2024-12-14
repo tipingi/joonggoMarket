@@ -15,9 +15,8 @@
   <div class = "container">
     <div class="left-column">
       <div class = "information">
-        <div class= "box">
-          <h3>내 정보</h3>
-        </div>
+        <h3>내 정보</h3>
+        
         <ul>
           <li><a href="/wallet">계좌 관리</a></li>
           <li><a href="/post">내 게시글</a></li>
@@ -48,23 +47,45 @@
 
       <div class = "history">
         <h2>판매 내역</h2>
-        <% sellHistory.forEach(history=> { %>
+        <% sellHistory.forEach(transaction=> { %>
           <div class = "sold">
-            <p>판매 제품: <%= history.product_name %>
-            </p>
-            <p>판매일자: <%= history.transaction_at %>
-            </p>
+            <table>
+              <thead>
+              <tr>
+                <th>판매 제품: </th>
+                <th>판매일자: </th>
+              </tr>
+            </thead>
+            <tbody>
+              <td>
+                <%= transaction.product_name %>
+              </td>
+              <td><%= transaction.transaction_at %>
+              </td>
+            </tbody>
+            </table>
           </div>
         <% }) %>
       </div>
       <div class = "history">
         <h2>구매 내역</h2>
-        <% buyHistory.forEach(history=>{ %>
+        <% buyHistory.forEach(transaction=>{ %>
           <div class = "bought">
-            <p>구매 제품: <%= history.product_name %>
-            </p>
-            <p>구매일자: <%= history.transaction_at %>
-            </p>
+            <table>
+              <thead>
+              <tr>
+                <th>구매 제품: </th>
+                <th>구매일자: </th>
+              </tr>
+            </thead>
+            <tbody>
+              <td>
+                <%= transaction.product_name %>
+              </td>
+              <td><%= transaction.transaction_at %>
+              </td>
+            </tbody>
+            </table>
           </div>
         <% }) %>
       </div>
