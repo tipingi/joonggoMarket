@@ -33,31 +33,29 @@
     grid-column: 1 / 2; /* upperside의 첫 번째 열 */
 }
 
-#board h3 {
+h3 {
     font-size: 1.4em;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
+    padding: 5px;
+    margin-left: 10px;
     font-weight: bold;
 }
 
-#board table {
+table {
     width: 100%;
+    margin-left: 10px;
     margin-top: 10px;
 }
 
-#board table th, #board table td {
+th, td {
     border: 1px solid #ddd;
     padding: 15px;
-    margin-left: 10px;
+    margin-left: 20px;
     text-align: center;
 }
 
-#board a {
+a {
     text-decoration: underline;
-    text-align: right;
-    margin-left: 50px;
+    margin-left: 600px;
     font-size: 14px;
     color: #007bff;
 }
