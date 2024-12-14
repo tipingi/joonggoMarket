@@ -5,125 +5,94 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main Form</title>
-    <link rel="stylesheet" href="/public/stylesheets/style.css"> <!-- 스타일 적용을 위한 CSS 파일 -->
-    <style>
-        .main-container{
-            display: grid;
-            grid-template-columns: 1.5fr 1.5fr;
-            margin-bottom: 20px;
-            gap: 20px; /* 두 섹션 사이 간격 */
-            padding: 20px;
-        }
-        .board{
-            background-color: orange;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0px 2px 4px rgba(0,0,0,0.1);
-        }
-        table{
-            background-color: antiquewhite;
-        }
-        table thead th{
-            background-color: skyblue;
-        }
-        .popular-product{
-            background-color: orange;
-            padding:20px;
-            border-radius: 8px;
-            box-shadow: 0px 2px 4px rgba(0,0,0,0.1);
-        }
-        .recent-products{
-            background-color: orange;
-            padding:20px;
-        }
-        .recent-transactions{
-            background-color: orange;
-            padding:20px;
-        }
-        .product{
-            background-color: antiquewhite;
-        }
-    </style>
+    <link rel="stylesheet" href="/stylesheets/dashboard.css"> <!-- 스타일 적용을 위한 CSS 파일 -->
 </head>
 
 <body>
     <!-- 상단 네비게이션 -->
-    <div class="nav">
-        <button id="myButton" onclick="handleMy()">마이</button>
-        <button id="messageButton" onclick="handleMessage()">쪽지</button>
-        <button id="logoutButton" onclick="handleLogout()">로그아웃</button>
-    </div>
+    <header>
+        <div id="nav">
+            <button id="myButton" onclick="handleMy()">마이</button>
+            <button id="messageButton" onclick="handleMessage()">쪽지</button>
+            <button id="logoutButton" onclick="handleLogout()">로그아웃</button>
+        </div>
+    </header>
 
     <div class="main-container">
-        <!-- 게시판 영역 -->
-        <div class="board">
-            <h3>게시판</h3>
-            <a href="/post">더보기</a>
-            <table>
-                <thead>
-                    <tr>
-                        <th>제목</th>
-                        <th>유저 ID</th>
-                        <th>날짜</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% boardPosts.forEach(post=> { %>
+        <div class = "upperside">
+            <!-- 게시판 영역 -->
+            <div class="board">
+                <h3>게시판</h3>
+                <a href="/post">더보기</a>
+            
+                <table>
+                    <thead>
                         <tr>
-                            <td>
-                                <%= post.title %>
-                            </td>
-                            <td>
-                                <%= post.writer_id %>
-                            </td>
-                            <td>
-                                <%= post.created_at %>
-                            </td>
+                            <th>제목</th>
+                            <th>유저 ID</th>
+                            <th>날짜</th>
                         </tr>
-                    <% }) %>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        <% boardPosts.forEach(board=> { %>
+                            <tr>
+                                <td>
+                                    <%= board.title %>
+                                </td>
+                                <td>
+                                    <%= board.writer_id %>
+                                </td>
+                                <td>
+                                    <%= board.created_at %>
+                                </td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+
+             <!-- 조회수 높은 상품 -->
+            <div class="popular-product">
+                <h3>조회수 높은 상품</h3>
+                <% popularProducts.forEach(product=> { %>
+                    <div class="product">
+                        <p>카테고리: <%= product.category_name %>
+                        </p>
+                        <p>상품명: <%= product.product_name %>
+                        </p>
+                        <p>조회수: <%= product.view_count %>
+                        </p>
+                    </div>
+                <% }) %>
+            </div>
         </div>
 
-        <!-- 조회수 높은 상품 -->
-        <div class="popular-product">
-            <h3>조회수 높은 상품</h3>
-            <% popularProducts.forEach(product=> { %>
-                <div class="product">
-                    <p>카테고리: <%= product.category_name %>
-                    </p>
-                    <p>상품명: <%= product.product_name %>
-                    </p>
-                    <p>조회수: <%= product.view_count %>
-                    </p>
-                </div>
-            <% }) %>
-        </div>
+        <div class = "downside">
+            <!-- 최근 등록된 상품 -->
+            <div class="recent-products">
+                <h3>방금 등록된 상품</h3>
+                <% recentProducts.forEach(product=> { %>
+                    <div class="product">
+                        <p>상품명: <%= product.product_name %>
+                        </p>
+                        <p>등록일: <%= product.created_at %>
+                        </p>
+                    </div>
+                <% }) %>
+            </div>
 
-        <!-- 최근 등록된 상품 -->
-        <div class="recent-products">
-            <h3>방금 등록된 상품</h3>
-            <% recentProducts.forEach(product=> { %>
-                <div class="product">
-                    <p>상품명: <%= product.product_name %>
-                    </p>
-                    <p>등록일: <%= product.created_at %>
-                    </p>
-                </div>
-            <% }) %>
-        </div>
-
-        <!-- 최근 거래된 상품 -->
-        <div class="recent-transactions">
-            <h3>최근 거래된 상품</h3>
-            <% recentTransactions.forEach(transaction=> { %>
-                <div class="product">
-                    <p>상품명: <%= transaction.product_name %>
-                    </p>
-                    <p>거래일: <%= transaction.transaction_at %>
-                    </p>
-                </div>
-            <% }) %>
+            <!-- 최근 거래된 상품 -->
+            <div class="recent-transactions">
+                <h3>최근 거래된 상품</h3>
+                <% recentTransactions.forEach(transaction=> { %>
+                    <div class="product">
+                        <p>상품명: <%= transaction.product_name %>
+                        </p>
+                        <p>거래일: <%= transaction.transaction_at %>
+                        </p>
+                    </div>
+                <% }) %>
+            </div>
         </div>
     </div>
 

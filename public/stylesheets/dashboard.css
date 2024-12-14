@@ -1,0 +1,177 @@
+/* 전체 컨테이너 */
+.main-container {
+    width: 90%;
+    margin: 20px auto;
+    display: grid;
+    grid-template-columns: 1fr; /* 전체 가로 크기 */
+    grid-template-rows: auto auto; /* 상단과 하단 */
+    grid-gap: 20px; /* 섹션 간의 간격 */
+}
+
+/* upperside 스타일 (상단 영역) */
+.upperside {
+    display: grid;
+    grid-template-columns: 3fr 1fr; /* 게시판과 조회수 높은 상품 비율 */
+    grid-gap: 20px; /* 게시판과 인기 상품 간 간격 */
+    background-color: #f8f9fa;
+}
+
+/* downside 스타일 (하단 영역) */
+.downside {
+    display: grid;
+    grid-template-columns: 1fr; /* 하단 전체 하나의 열 */
+    grid-template-rows: auto auto; /* 최근 등록된 상품과 최근 거래된 상품 */
+    grid-gap: 20px; /* 두 섹션 간 간격 */
+}
+
+/* 게시판 스타일 */
+#board {
+    background-color: #fff;
+    border: 1px solid #333;
+    padding: 5px;
+    border-radius: 8px;
+    grid-column: 1 / 2; /* upperside의 첫 번째 열 */
+}
+
+#board h3 {
+    font-size: 1.4em;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+
+#board table {
+    width: 100%;
+    margin-top: 10px;
+}
+
+#board table th, #board table td {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-left: 10px;
+    text-align: center;
+}
+
+#board a {
+    text-decoration: underline;
+    text-align: right;
+    margin-left: 50px;
+    font-size: 14px;
+    color: #007bff;
+}
+
+/* 조회수 높은 상품 스타일 */
+.popular-product {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 8px;
+    grid-column: 2 / 3; /* upperside의 두 번째 열 */
+}
+
+.popular-product h3 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.popular-product .product {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+}
+
+.popular-product .product:last-child {
+    border-bottom: none;
+}
+
+.popular-product .product p {
+    margin: 0;
+    font-size: 14px;
+}
+
+/* 최근 등록된 상품 스타일 */
+.recent-products {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 8px;
+    grid-row: 1 / 2; /* downside 첫 번째 섹션 */
+}
+
+.recent-products h3 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.recent-products .product {
+    display: inline-block;
+    width: 22%; /* 각 항목의 너비 */
+    margin-right: 2%; /* 항목 간격 */
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #fff;
+    text-align: center;
+}
+
+.recent-products .product:nth-child(4n) {
+    margin-right: 0; /* 네 번째 항목마다 오른쪽 여백 제거 */
+}
+
+/* 최근 거래된 상품 스타일 */
+.recent-transactions {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 8px;
+    grid-row: 2 / 3; /* downside 두 번째 섹션 */
+}
+
+.recent-transactions h3 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.recent-transactions .product {
+    display: inline-block;
+    width: 22%; /* 각 항목의 너비 */
+    margin-right: 2%; /* 항목 간격 */
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #fff;
+    text-align: center;
+}
+
+.recent-transactions .product:nth-child(4n) {
+    margin-right: 0; /* 네 번째 항목마다 오른쪽 여백 제거 */
+}
+
+/* 상단 네비게이션 스타일 */
+#nav {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+#nav button {
+    background-color: orange;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    margin-left: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+#nav button:hover {
+    background-color: orange;
+}
