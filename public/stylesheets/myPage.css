@@ -1,0 +1,108 @@
+h1{
+    margin-left: 80px;
+    background-color: orange;
+    border: 1px solid #333;
+    padding: 5px;
+    width:fit-content;
+}
+
+/* 전체 컨테이너 */
+.container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    gap: 20px; /* 두 컬럼 사이의 간격 */
+}
+
+/* 왼쪽 컬럼 (내 정보 및 프로필) */
+.left-column {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 25%; /*왼쪽 열 너비*/
+    border-radius: 8px;
+}
+
+.information{
+    background-color: #f1f0ec;
+    border: 1px solid #333;
+    padding: 20px;
+    height: 100%;
+    border-radius: 8px;
+}
+
+.box{
+    background-color:orange;
+    border: 1px solid #333;
+    border-radius: 10px;
+    width: 150px;
+    margin-left: 85px;
+    margin-right: 10px;
+}
+.information h3{
+    text-align: center;
+    margin-bottom: 15px;
+}
+.information ul{
+    list-style: none;
+    padding: 5px;
+}
+.information ul li{
+    list-style: none;
+    text-align: center;
+    padding: 15px;
+    background-color: #8fbc8f;
+    border: 1px solid #333;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+/* 오른쪽 컬럼 (판매내역, 구매내역) */
+.right-column {
+    display: flex;
+    flex-direction: column;
+    gap: 30%; /* 두 섹션 간 간격 */
+    width: 100%; /*우측 열 너비 */
+}
+
+.profile{
+    background-color: #f1f0ec;
+    border: 1px solid #333;
+    padding: 20px;
+    width:500px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+/* 판매내역 및 구매내역 스타일 */
+.history {
+    background-color: #f7f6f5;
+    border:1px solid #ddd;
+    padding:20px;
+    border-radius: 8px;
+    width: 130%;
+    margin-right: 15px;
+}
+
+.history h2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    font-size: 1.2em;
+}
+
+.history .product-box {
+    display: flex;
+    gap:10px;
+    flex-wrap: wrap;
+}
+
+.history .product {
+    flex: 1 1 calc(33.333% - 10px); /* 세 개의 박스를 한 줄에 배치 */
+    border:1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #fff;
+    text-align: center;
+}
