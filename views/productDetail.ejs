@@ -5,16 +5,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>상품 상세 정보</title>
-    <link rel="stylesheet" href="/stylesheets/post.css">
+    <link rel="stylesheet" href="/stylesheets/product.css">
 </head>
 
 <body>
-    <h1>상품 상세 정보</h1>
+    <div class="title-bar">
+        <h1>상품 상세 정보</h1>
+        <div class="actions">
+            <a href="/products/new" class="create-button">상품등록하기</a>
+            <a href="/products">상품 목록으로 돌아가기</a>
+        </div>
+    </div>
+
     <% if (product) { %>
         <p><strong>상품 ID:</strong>
             <%= product.product_id %>
         </p>
-        <p><strong>상품명:</strong> 
+        <p><strong>상품명:</strong>
             <%= product.name %>
         </p>
         <p><strong>가격:</strong>
@@ -26,7 +33,6 @@
         <p><strong>설명:</strong>
             <%= product.description %>
         </p>
-        <a href="/products">상품 목록으로 돌아가기</a>
         <% } else { %>
             <p>상품 정보를 가져올 수 없습니다.</p>
             <a href="/products">상품 목록으로 돌아가기</a>

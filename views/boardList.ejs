@@ -10,14 +10,18 @@
 
 <body>
     <div class="title-bar">
-        <h3>게시판</h3>
-        <a href="/dashboard">메인으로 돌아가기</a>
+        <h1>게시판</h1>
+        <div class="actions">
+            <a href="/boards/new" class="create-button">게시글 등록하기</a>
+            <a href="/dashboard">메인으로 돌아가기</a>
+        </div>
     </div>
 
     <% if (boardPosts && boardPosts.length> 0) { %>
         <table border="1" cellpadding="10" cellspacing="0">
             <thead>
                 <tr>
+                    <th>유형</th>
                     <th>제목</th>
                     <th>작성자</th>
                     <th>등록일</th>
@@ -26,11 +30,23 @@
             <tbody>
                 <% boardPosts.forEach(post=> { %>
                     <tr>
+                        <!-- 1. 자유게시판, 2. 삽니다, 3. 팝니다  -->
+                        <td>
+                            <% if (post.board_type === 1) { %>
+                                자유게시판
+                            <% } else if (post.board_type === 2) { %>
+                                삽니다
+                            <% } else if (post.board_type === 3) { %>
+                                팝니다
+                            <% } else { %>
+                                알 수 없음
+                            <% } %>
+                        </td>
                         <td>
                             <%= post.title %>
                         </td>
                         <td>
-                            <%= post.writer_id %>
+                            <%= post.writer_name %>
                         </td>
                         <td>
                             <%= post.created_at %>

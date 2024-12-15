@@ -19,6 +19,10 @@ router.get('/products', async (req, res) => {
     }
 });
 
+router.get('/products/new', (req, res) => {
+    res.render('newProduct');
+});
+
 // 특정 상품 상세 페이지 (GET /products/:id)
 router.get('/products/:id', async (req, res) => {
     const productId = req.params.id;
