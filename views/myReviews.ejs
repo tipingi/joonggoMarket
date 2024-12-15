@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>내가 쓴 리뷰</title>
+    <link rel="stylesheet" href="/stylesheets/board.css">
+</head>
+<body>
+    <div class="title-bar">
+        <h1>내가 쓴 리뷰</h1>
+        <div class="actions">
+            <a href="/mypage">내 정보로 돌아가기</a>
+        </div>
+    </div>
+
+    <h2><%= writer_id %> 님이 작성한 리뷰 목록</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>상품명</th>
+                <th>평점</th>
+                <th>내용</th>
+                <th>작성일</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (reviews.length > 0) { %>
+                <% reviews.forEach(review => { %>
+                    <tr>
+                        <td><%= review.product_name %></td>
+                        <td><%= review.score %></td>
+                        <td><%= review.content %></td>
+                        <td><%= review.created_at %></td>
+                    </tr>
+                <% }) %>
+            <% } else { %>
+                <tr>
+                    <td colspan="4">작성한 리뷰가 없습니다.</td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+</body>
+</html>

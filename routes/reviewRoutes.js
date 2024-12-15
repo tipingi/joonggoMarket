@@ -9,12 +9,24 @@ function isAuthenticated(req, res, next) {
     res.redirect('/login');
 }
 
-// 리뷰 조회 페이지 (GET /reviews)
-router.get('/reviewList', isAuthenticated, async (req, res) => {
-    const userId = req.session.user.id; // 세션에 저장된 사용자 ID
+// 내가 쓴 리뷰 목록 페이지 (GET /myReviews)
+router.get('/myReviews', isAuthenticated, async (req, res) => {
+    const writer_id = req.session.user.id; // 세션에 저장된 현재 로그인 사용자 ID
     try {
-        const reviews = await getReviewsById(sellerId);
-        res.render('review', { reviews });
+        const reviews = await getReviewsByMe(writer_id);
+        res.render('myReviews', { reviews, writer_id });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
+// 내가 판매한 상품에 대한 리뷰 페이지 (GET /sellerReviews)
+router.get('/sellerReviews', isAuthenticated, async (req, res) => {
+    const seller_id = req.session.user.id; // 로그인한 사용자를 seller_id로 가정
+    try {
+        const reviews = await getReviewsByOthers(seller_id);
+        res.render('sellerReviews', { reviews, seller_id });
     } catch (error) {
         console.error(error);
         res.status(500).send('Internal Server Error');

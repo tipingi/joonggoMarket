@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>내가 판 상품에 대한 리뷰</title>
+    <link rel="stylesheet" href="/stylesheets/board.css">
+</head>
+<body>
+    <div class="title-bar">
+        <h1>내가 판 상품에 대한 리뷰</h1>
+        <div class="actions">
+            <a href="/mypage">마이페이지로 돌아가기</a>
+        </div>
+    </div>
+
+    <h2><%= seller_id %> 님이 판매한 상품들에 대한 리뷰</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>상품명</th>
+                <th>작성자(구매자)</th>
+                <th>평점</th>
+                <th>내용</th>
+                <th>작성일</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (reviews.length > 0) { %>
+                <% reviews.forEach(review => { %>
+                    <tr>
+                        <td><%= review.product_name %></td>
+                        <td><%= review.writer_id %></td>
+                        <td><%= review.score %></td>
+                        <td><%= review.content %></td>
+                        <td><%= review.created_at %></td>
+                    </tr>
+                <% }) %>
+            <% } else { %>
+                <tr>
+                    <td colspan="5">리뷰가 없습니다.</td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+</body>
+</html>
