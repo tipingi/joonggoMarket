@@ -18,6 +18,18 @@ router.get('/boards', async (req, res) => {
     }
 });
 
+// 내 게시글 페이지 (GET /myBoardList)
+router.get('/myBoard', async (req, res) => {
+    try {
+        const user = req.session.user; 
+        const boardPosts = await getBoardById(user.id);
+        res.render('myBoardList', { boardPosts });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
 // 게시글 등록 페이지
 router.get('/boards/new', async (req, res) => {
     try {

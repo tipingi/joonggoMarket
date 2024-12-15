@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>게시판 목록</title>
+    <title>내 게시글</title>
     <link rel="stylesheet" href="/stylesheets/board.css">
 </head>
 
@@ -12,8 +12,7 @@
     <div class="title-bar">
         <h1>게시판</h1>
         <div class="actions">
-            <a href="/boards/new" class="create-button">게시글 등록하기</a>
-            <a href="/dashboard">메인으로 돌아가기</a>
+            <a href="/myPage">내 정보로 돌아가기</a>
         </div>
     </div>
 
@@ -23,9 +22,7 @@
                 <tr>
                     <th>유형</th>
                     <th>제목</th>
-                    <th>작성자</th>
                     <th>등록일</th>
-                    <th>상세보기</th>
                 </tr>
             </thead>
             <tbody>
@@ -47,12 +44,8 @@
                             <%= board.title %>
                         </td>
                         <td>
-                            <%= board.writer_id %>
-                        </td>
-                        <td>
                             <%= board.created_at %>
                         </td>
-                        <td><a href="/boards/<%= board.board_id %>">자세히 보기</a></td>
                     </tr>
                     <% }) %>
             </tbody>

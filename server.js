@@ -7,7 +7,6 @@ require('dotenv').config();
 const authRoutes = require('./routes/authRoutes');
 const dashboardRoutes = require('./routes/dashboardRoutes');
 const userRoutes = require('./routes/userRoutes');
-const messageRoutes = require('./routes/messageRoutes');
 const productRoutes = require('./routes/productRoutes');
 const boardRoutes = require('./routes/boardRoutes');
 
@@ -37,7 +36,6 @@ app.use(
 app.use('/', authRoutes);
 app.use('/', dashboardRoutes);
 app.use('/', userRoutes);
-app.use('/', messageRoutes);
 app.use('/', productRoutes);
 app.use('/', boardRoutes);
 

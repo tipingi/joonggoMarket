@@ -9,24 +9,27 @@
 </head>
 
 <body>
-  <h1>마이 페이지</h1>
-  
-  
-  <div class = "container">
+  <div class="title-bar">
+    <h1>마이 페이지</h1>
+    <div class="actions">
+      <a href="/dashboard" class="back-button">메인으로 돌아가기</a>
+    </div>
+  </div>
+
+  <div class="container">
     <div class="left-column">
-      <div class = "information">
+      <div class="information">
         <h3>내 정보</h3>
-        
+
         <ul>
-          <li><a href="/wallet">계좌 관리</a></li>
-          <li><a href="/post">내 게시글</a></li>
-          <li><a href="/reviews">리뷰 관리</a></li>
+          <li><a href="/myBoard">내 게시글</a></li>
+          <li><a href="/myReviews">리뷰 관리</a></li>
         </ul>
       </div>
     </div>
 
-    <div class = "Right-Column">
-      <div class = "profile">
+    <div class="Right-Column">
+      <div class="profile">
         <h2>프로필</h2>
         <p>ID: <%=userInfo.id %>
         </p>
@@ -45,49 +48,56 @@
         <a href="/editInfo">편집</a>
       </div>
 
-      <div class = "history">
+      <div class="history">
         <h2>판매 내역</h2>
-        <% sellHistory.forEach(transaction=> { %>
-          <div class = "sold">
-            <table>
-              <thead>
+        <div class="sold">
+          <table>
+            <thead>
               <tr>
-                <th>판매 제품: </th>
-                <th>판매일자: </th>
+                <th>판매 제품</th>
+                <th>판매일자</th>
               </tr>
             </thead>
             <tbody>
-              <td>
-                <%= transaction.product_name %>
-              </td>
-              <td><%= transaction.transaction_at %>
-              </td>
+              <% sellHistory.forEach(transaction=> { %>
+                <tr>
+                  <td>
+                    <%= transaction.product_name %>
+                  </td>
+                  <td>
+                    <%= transaction.transaction_at %>
+                  </td>
+                </tr>
+                <% }) %>
             </tbody>
-            </table>
-          </div>
-        <% }) %>
+          </table>
+        </div>
       </div>
-      <div class = "history">
+
+      <div class="history">
         <h2>구매 내역</h2>
-        <% buyHistory.forEach(transaction=>{ %>
-          <div class = "bought">
-            <table>
-              <thead>
+        <div class="bought">
+          <table>
+            <thead>
               <tr>
-                <th>구매 제품: </th>
-                <th>구매일자: </th>
+                <th>구매 제품</th>
+                <th>구매일자</th>
               </tr>
             </thead>
             <tbody>
-              <td>
-                <%= transaction.product_name %>
-              </td>
-              <td><%= transaction.transaction_at %>
-              </td>
+              <% buyHistory.forEach(transaction=> { %>
+                <tr>
+                  <td>
+                    <%= transaction.product_name %>
+                  </td>
+                  <td>
+                    <%= transaction.transaction_at %>
+                  </td>
+                </tr>
+                <% }) %>
             </tbody>
-            </table>
-          </div>
-        <% }) %>
+          </table>
+        </div>
       </div>
     </div>
   </div>

@@ -11,12 +11,12 @@ async function getAllBoards() {
 }
 
 // 특정게시글 상세 조회
-async function getBoardById(boardId) {
+async function getBoardById(writer_id) {
     const [rows] = await pool.query(
-        'SELECT board_id, title, content, DATE_FORMAT(created_at, "%Y-%m-%d %H:%i:%s") as created_at '
-        + 'FROM tbl_board WHERE board_id = ?'
-        , [boardId]);
-    return rows[0];
+        'SELECT board_id, board_type, title, content, DATE_FORMAT(created_at, "%Y-%m-%d %H:%i:%s") as created_at '
+        + 'FROM tbl_board WHERE writer_id = ?'
+        , [writer_id]);
+    return rows;
 }
 
 // 상품 등록

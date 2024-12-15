@@ -19,20 +19,20 @@ router.get('/mypage', isAuthenticated, async (req, res) => {
         // 현재 로그인한 사용자 정보
         const [userInfo] = await pool.query(
             'SELECT id, name, email, phone_no, post_code, address, DATE_FORMAT(init_at, "%Y-%m-%d %H:%i:%s") AS init_at ' +
-            'FROM tbl_user WHERE user_id = ?', [user.user_id]);
+            'FROM tbl_user WHERE id = ?', [user.id]);
 
         // 판매 중인 내역 5개
         const [sellHistory] = await pool.query(
             'SELECT tpr.name as product_name, DATE_FORMAT(tpr.created_at, "%Y-%m-%d %H:%i:%s") AS created_at ' +
-            'FROM tbl_product tpr inner join tbl_user tur on tpr.seller_id = tur.user_id ' +
-            'where tpr.status_id = 1 and tpr.seller_id = ? ORDER BY tpr.created_at DESC LIMIT 5', [user.user_id]);
+            'FROM tbl_product tpr inner join tbl_user tur on tpr.seller_id = tur.id ' +
+            'where tpr.status_id = 1 and tpr.seller_id = ? ORDER BY tpr.created_at DESC LIMIT 5', [user.id]);
 
         // 구매 내역 5개
         const [buyHistory] = await pool.query(
             'SELECT tpr.name as product_name, DATE_FORMAT(ttr.transaction_at, "%Y-%m-%d %H:%i:%s") AS transaction_at ' +
-            'FROM tbl_transaction ttr inner join tbl_user tur on ttr.buyer_id = tur.user_id ' +
+            'FROM tbl_transaction ttr inner join tbl_user tur on ttr.buyer_id = tur.id ' +
             'inner join tbl_product tpr on ttr.product_id = tpr.product_id ' +
-            'where ttr.status = 1 and tur.user_id = ? ORDER BY ttr.transaction_at DESC LIMIT 5', [user.user_id]);
+            'where ttr.status = 1 and tur.id = ? ORDER BY ttr.transaction_at DESC LIMIT 5', [user.id]);
 
         res.render('mypage', {
             user,
@@ -49,9 +49,9 @@ router.get('/mypage', isAuthenticated, async (req, res) => {
 // GET /editInfo - 정보 수정 페이지 렌더링
 router.get('/editInfo', isAuthenticated, async (req, res) => {
     try {
-        const userId = req.session.user.id; 
+        const userId = req.session.user.id;
         const userInfo = await getUserById(userId);
-        
+
         console.log(userId);
         console.log(userInfo);
 
@@ -65,7 +65,7 @@ router.get('/editInfo', isAuthenticated, async (req, res) => {
 // POST /editInfo - 정보 수정 처리
 router.post('/editInfo', isAuthenticated, async (req, res) => {
     try {
-        const userId = req.session.user.id; 
+        const userId = req.session.user.id;
         const { password, name, phone, email, address, post_code } = req.body;
 
         const result = await updateUserInfo({
