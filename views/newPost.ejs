@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시글 등록</title>
+    <link rel="stylesheet" href="/stylesheets/post.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- 타이틀 바 -->
+        <div class="title-bar">
+            <h1>게시글 등록</h1>
+            <div class="actions">
+                <a href="/posts" class="back-button">게시글 목록으로 돌아가기</a>
+            </div>
+        </div>
+
+        <!-- 게시글 등록 폼 -->
+        <form action="/posts" method="post" class="post-form">
+            <div>
+                <label for="title">제목:</label>
+                <input type="text" id="title" name="title" placeholder="제목을 입력하세요" required>
+            </div>
+            <div>
+                <label for="content">내용:</label>
+                <textarea id="content" name="content" rows="5" placeholder="내용을 입력하세요" required></textarea>
+            </div>
+            <button type="submit">등록하기</button>
+        </form>
+    </div>
+</body>
+
+</html>
