@@ -15,7 +15,6 @@ router.get('/dashboard', isAuthenticated, async (req, res) => {
     const user = req.session.user;
 
     try {
-        // 데이터 가져오기
         const [boardPosts] = await pool.query('SELECT tbo.board_type, tur.name, tbo.title, DATE_FORMAT(tbo.created_at, "%Y-%m-%d %H:%i:%s") AS created_at ' +
             'FROM tbl_board tbo ' +
             'inner join tbl_user tur on tbo.writer_id = tur.user_id ' +
@@ -38,7 +37,7 @@ router.get('/dashboard', isAuthenticated, async (req, res) => {
             boardPosts,
             popularProducts,
             recentTransactions,
-            recentProducts,
+            recentProducts
         });
     } catch (error) {
         console.error(error);

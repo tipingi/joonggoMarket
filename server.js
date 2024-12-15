@@ -8,6 +8,8 @@ const authRoutes = require('./routes/authRoutes');
 const dashboardRoutes = require('./routes/dashboardRoutes');
 const mypageRoutes = require('./routes/mypageRoutes');
 const messageRoutes = require('./routes/messageRoutes');
+const productRoutes = require('./routes/productRoutes');
+const boardRoutes = require('./routes/boardRoutes');
 
 const app = express();
 
@@ -36,6 +38,8 @@ app.use('/', authRoutes);
 app.use('/', dashboardRoutes);
 app.use('/', mypageRoutes);
 app.use('/', messageRoutes);
+app.use('/', productRoutes);
+app.use('/', boardRoutes);
 
 // 서버 실행
 const PORT = process.env.PORT || 5000;

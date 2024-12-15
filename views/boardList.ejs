@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시판 목록</title>
+    <link rel="stylesheet" href="/stylesheets/board.css">
+</head>
+
+<body>
+    <div class="title-bar">
+        <h3>게시판</h3>
+        <a href="/dashboard">메인으로 돌아가기</a>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>제목</th>
+                <th>작성자</th>
+                <th>등록일</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (boardPosts && boardPosts.length> 0) { %>
+                <% boardPosts.forEach(post=> { %>
+                    <tr>
+                        <td>
+                            <%= post.title %>
+                        </td>
+                        <td>
+                            <%= post.writer_id %>
+                        </td>
+                        <td>
+                            <%= post.created_at %>
+                        </td>
+                    </tr>
+                    <% }) %>
+                        <% } else { %>
+                            <tr>
+                                <td colspan="3">등록된 게시글이 없습니다.</td>
+                            </tr>
+                            <% } %>
+        </tbody>
+    </table>
+</body>
+
+</html>

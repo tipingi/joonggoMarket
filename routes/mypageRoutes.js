@@ -14,7 +14,7 @@ function isAuthenticated(req, res, next) {
 router.get('/mypage', isAuthenticated, async (req, res) => {
     const user = req.session.user; // 로그인된 사용자 정보
 
-    console.log(user); // 빈 배열인지 확인
+    console.log(user);
     try {
         // 현재 로그인한 사용자 정보
         const [userInfo] = await pool.query(

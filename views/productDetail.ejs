@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>상품 상세 정보</title>
+    <link rel="stylesheet" href="/stylesheets/post.css">
+</head>
+
+<body>
+    <h1>상품 상세 정보</h1>
+    <% if (product) { %>
+        <p><strong>상품 ID:</strong>
+            <%= product.product_id %>
+        </p>
+        <p><strong>상품명:</strong> 
+            <%= product.name %>
+        </p>
+        <p><strong>가격:</strong>
+            <%= product.price %>원
+        </p>
+        <p><strong>등록일:</strong>
+            <%= product.created_at %>
+        </p>
+        <p><strong>설명:</strong>
+            <%= product.description %>
+        </p>
+        <a href="/products">상품 목록으로 돌아가기</a>
+        <% } else { %>
+            <p>상품 정보를 가져올 수 없습니다.</p>
+            <a href="/products">상품 목록으로 돌아가기</a>
+            <% } %>
+</body>
+
+</html>
