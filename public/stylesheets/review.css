@@ -1,42 +1,88 @@
-/* All layout*/
-body{
+/* 기본 컨테이너 스타일 */
+body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f9f9f9;
 }
 
-.container{
-    width: 80%;
-    margin: 30px auto;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+.container {
+    width: 90%;
+    margin: 20px auto;
     background-color: #fff;
-    box-shadow: 0px 2px 4px rgba(0,0,0,0.1);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-h1{
-    font-size: 1.5em;
-    margin-bottom: 20px;
+
+h1 {
     text-align: center;
+    color: #333;
+    margin-bottom: 20px;
 }
-table{
-    width: 100px;
+
+/* 테이블 스타일 */
+table {
+    width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
 }
-table th, table td{
+
+table th, table td {
     border: 1px solid #ddd;
     padding: 10px;
-    text-align: left;
+    text-align: center;
 }
-table th{
+
+table th {
     background-color: orange;
-    text-align: center;
+    color: white;
 }
-table tbody tr:nth-child(even){
-    background-color: gold;
+
+table td button {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
-table td{
-    text-align: center;
+
+table td button:hover {
+    background-color: #cc0000;
+}
+
+/* 리뷰 작성 폼 */
+.review-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.review-form label {
+    font-weight: bold;
+}
+
+.review-form input, 
+.review-form textarea {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.review-form button {
+    align-self: flex-start;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.review-form button:hover {
+    background-color: #218838;
 }

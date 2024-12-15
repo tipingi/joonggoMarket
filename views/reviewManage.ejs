@@ -4,27 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>나의 리뷰</title>
-    
+    <link rel="stylesheet" href="/stylesheets/review.css">
 </head>
 <body>
     <div class="container">
+        <!--리뷰 관리 제목-->
         <h1>내 리뷰 관리</h1>
+
+        !-- 리뷰 작성 폼 -->
+        <form action="/reviews" method="post" class="review-form">
+            <label for="score">평점:</label>
+            <input type="number" id="score" name="score" min="1" max="5" required>
+            
+            <label for="content">리뷰:</label>
+            <textarea id="content" name="content" rows="3" placeholder="리뷰를 작성해주세요" required></textarea>
+            
+            <button type="submit">리뷰 작성</button>
+        </form>
+
+        <!-- 리뷰 테이블 -->
         <table>
             <thead>
                 <tr>
                     <th>구매자 ID</th>
                     <th>평점</th>
-                    <th>리뷰</th> 
+                    <th>리뷰</th>
                     <th>작성일</th>
+                    <th>작업</th>
                 </tr>
             </thead>
             <tbody>
                 <% reviews.forEach(review => { %>
                     <tr>
-                        <td><%= review.buyer_id%></td>
+                        <td><%= review.buyer_id %></td>
                         <td><%= review.score %></td>
                         <td><%= review.content %></td>
                         <td><%= review.created_at %></td>
+                        <td>
+                            <form action="/reviews/<%= review.id %>?_method=DELETE" method="post" class="delete-form">
+                                <button type="submit" onclick="return confirm('정말 삭제하시겠습니까?')">삭제</button>
+                            </form>
+                        </td>
                     </tr>
                 <% }) %>
             </tbody>
