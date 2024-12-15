@@ -10,8 +10,17 @@ const {
     getProductById,
     createProduct,
     updateProduct,
-    deleteProduct
+    updateProductStatus
 } = require('../models/productModel');
+
+const { insertTransaction } = require('../models/transactionModel');
+
+function isAuthenticated(req, res, next) {
+    if (req.session && req.session.user) {
+        return next();
+    }
+    res.redirect('/'); // 로그인 페이지로 리디렉션
+}
 
 // 상품 목록 페이지 (GET /products)
 router.get('/products', async (req, res) => {
@@ -28,7 +37,7 @@ router.get('/products', async (req, res) => {
 router.get('/products/new', async (req, res) => {
     try {
         const categories = await getAllCategories();
-        const user = req.session.user; // 로그인한 사용자 정보라 가정
+        const user = req.session.user;
         res.render('newProduct', { user, categories });
     } catch (err) {
         console.error(err);
@@ -73,6 +82,28 @@ router.put('/products/:id', async (req, res) => {
             return res.status(404).send('수정할 상품을 찾을 수 없습니다.');
         }
         res.json({ success: true });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
+// 구매 처리 라우트 (POST /purchase)
+router.post('/purchase', isAuthenticated, async (req, res) => {
+    const { product_id } = req.body;    
+    const user = req.session.user.id;
+
+    try {
+        // 상품 상태 업데이트 (status_id = 3)
+        const updated = await updateProductStatus(product_id, 3);
+        if (updated === 0) {
+            return res.status(404).send('상품을 찾을 수 없습니다.');
+        }
+
+        // 거래 완료 (status_id = 3)
+        await insertTransaction(user, product_id, 1);
+
+        res.redirect('/mypage');
     } catch (error) {
         console.error(error);
         res.status(500).send('Internal Server Error');

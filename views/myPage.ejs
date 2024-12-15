@@ -23,7 +23,7 @@
 
         <ul>
           <li><a href="/myBoard">내 게시글</a></li>
-          <li><a href="/myReviews">리뷰 관리</a></li>
+          <li><a href="/reviewList">리뷰 관리</a></li>
         </ul>
       </div>
     </div>
@@ -82,6 +82,7 @@
               <tr>
                 <th>구매 제품</th>
                 <th>구매일자</th>
+                <th>리뷰 작성하기</th>
               </tr>
             </thead>
             <tbody>
@@ -93,6 +94,7 @@
                   <td>
                     <%= transaction.transaction_at %>
                   </td>
+                  <td><a href="/reviews/new">리뷰 작성</a></td>
                 </tr>
                 <% }) %>
             </tbody>

@@ -29,7 +29,7 @@ router.get('/mypage', isAuthenticated, async (req, res) => {
 
         // 구매 내역 5개
         const [buyHistory] = await pool.query(
-            'SELECT tpr.name as product_name, DATE_FORMAT(ttr.transaction_at, "%Y-%m-%d %H:%i:%s") AS transaction_at ' +
+            'SELECT tpr.product_id, tpr.name as product_name, DATE_FORMAT(ttr.transaction_at, "%Y-%m-%d %H:%i:%s") AS transaction_at ' +
             'FROM tbl_transaction ttr inner join tbl_user tur on ttr.buyer_id = tur.id ' +
             'inner join tbl_product tpr on ttr.product_id = tpr.product_id ' +
             'where ttr.status = 1 and tur.id = ? ORDER BY ttr.transaction_at DESC LIMIT 5', [user.id]);
@@ -51,9 +51,6 @@ router.get('/editInfo', isAuthenticated, async (req, res) => {
     try {
         const userId = req.session.user.id;
         const userInfo = await getUserById(userId);
-
-        console.log(userId);
-        console.log(userInfo);
 
         res.render('editInfo', { userInfo });
     } catch (error) {

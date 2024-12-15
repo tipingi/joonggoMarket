@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>리뷰 등록</title>
+    <link rel="stylesheet" href="/stylesheets/board.css">
+</head>
+<body>
+    <div class="title-bar">
+        <h1>리뷰 등록하기</h1>
+        <div class="actions">
+            <a href="/mypage" class="back-button">내 정보로 돌아가기</a>
+        </div>
+    </div>
+
+    <form action="/reviews" method="post">
+        <input type="hidden" name="transaction_id" value="<%= transaction.transaction_id %>">
+        <input type="hidden" name="product_id" value="<%= product.product_id %>">
+
+        <label>평점(1~5):</label>
+        <input type="number" name="score" min="1" max="5" required>
+
+        <label>리뷰 내용:</label>
+        <textarea name="content"></textarea>
+
+        <button type="submit">리뷰 등록</button>
+    </form>
+</body>
+</html>

@@ -42,10 +42,20 @@ async function deleteProduct(productId) {
     return result.affectedRows;
 }
 
+async function updateProductStatus(product_id, status_id) {
+    const [result] = await pool.query(
+        'UPDATE tbl_product SET status_id = ? WHERE product_id = ?',
+        [status_id, product_id]
+    );
+    return result.affectedRows;
+}
+
+
 module.exports = {
     getAllProducts,
     getProductById,
     createProduct,
     updateProduct,
-    deleteProduct
+    deleteProduct,
+    updateProductStatus
 };

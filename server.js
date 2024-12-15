@@ -9,6 +9,7 @@ const dashboardRoutes = require('./routes/dashboardRoutes');
 const userRoutes = require('./routes/userRoutes');
 const productRoutes = require('./routes/productRoutes');
 const boardRoutes = require('./routes/boardRoutes');
+const reviewRoutes = require('./routes/reviewRoutes');
 
 const app = express();
 
@@ -38,6 +39,7 @@ app.use('/', dashboardRoutes);
 app.use('/', userRoutes);
 app.use('/', productRoutes);
 app.use('/', boardRoutes);
+app.use('/', reviewRoutes);
 
 // 서버 실행
 const PORT = process.env.PORT || 5000;

@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>상품 상세 정보</title>
     <link rel="stylesheet" href="/stylesheets/product.css">
 </head>
-
 <body>
     <div class="title-bar">
         <h1>상품 상세 정보</h1>
@@ -17,24 +15,19 @@
     </div>
 
     <% if (product) { %>
-        <p><strong>상품 ID:</strong>
-            <%= product.product_id %>
-        </p>
-        <p><strong>상품명:</strong>
-            <%= product.name %>
-        </p>
-        <p><strong>가격:</strong>
-            <%= product.price %>원
-        </p>
-        <p><strong>등록일:</strong>
-            <%= product.created_at %>
-        </p>
-        <p><strong>설명:</strong>
-            <%= product.description %>
-        </p>
-        <% } else { %>
-            <p>상품 정보를 가져올 수 없습니다.</p>
-            <% } %>
-</body>
+        <p><strong>상품 ID:</strong> <%= product.product_id %></p>
+        <p><strong>상품명:</strong> <%= product.name %></p>
+        <p><strong>가격:</strong> <%= product.price %>원</p>
+        <p><strong>등록일:</strong> <%= product.created_at %></p>
+        <p><strong>설명:</strong> <%= product.description %></p>
 
+        <form action="/purchase" method="post">
+            <input type="hidden" name="product_id" value="<%= product.product_id %>">
+            <button type="submit">구매하기</button>
+        </form>
+
+    <% } else { %>
+        <p>상품 정보를 가져올 수 없습니다.</p>
+    <% } %>
+</body>
 </html>
