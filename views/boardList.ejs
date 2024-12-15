@@ -14,16 +14,16 @@
         <a href="/dashboard">메인으로 돌아가기</a>
     </div>
 
-    <table>
-        <thead>
-            <tr>
-                <th>제목</th>
-                <th>작성자</th>
-                <th>등록일</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% if (boardPosts && boardPosts.length> 0) { %>
+    <% if (boardPosts && boardPosts.length> 0) { %>
+        <table border="1" cellpadding="10" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>제목</th>
+                    <th>작성자</th>
+                    <th>등록일</th>
+                </tr>
+            </thead>
+            <tbody>
                 <% boardPosts.forEach(post=> { %>
                     <tr>
                         <td>
@@ -37,13 +37,11 @@
                         </td>
                     </tr>
                     <% }) %>
-                        <% } else { %>
-                            <tr>
-                                <td colspan="3">등록된 게시글이 없습니다.</td>
-                            </tr>
-                            <% } %>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+        <% } else { %>
+            <p>등록된 게시글이 없습니다.</p>
+            <% } %>
 </body>
 
 </html>
