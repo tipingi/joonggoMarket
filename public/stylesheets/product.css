@@ -1,21 +1,26 @@
-.container{
+.container {
     background-color: antiquewhite;
 }
-h1,h2{
+
+h1, h2 {
     margin-bottom: 20px;
 }
-table{
-    width: 80%;
+
+table {
+    width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
 }
-table th, table td{
+
+table th, table td {
     border: 1px solid #ddd;
-    text-align: middle;
     padding: 10px;
+    text-align: center; /* 중앙 정렬 */
 }
-table th{
+
+table th {
     background-color: orange;
+    color: white;
 }
 
 .title-bar {
@@ -27,22 +32,55 @@ table th{
 
 .title-bar h1 {
     margin: 0;
-    font-size: 24px;
+    font-size: 1.8em;
     font-weight: bold;
 }
 
 .title-bar .actions a {
-    margin-left: 10px;
     text-decoration: none;
-    font-size: 14px;
     color: #007bff;
+    font-size: 14px;
     border: 1px solid #007bff;
     padding: 5px 10px;
+    margin-left: 10px;
     border-radius: 5px;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .title-bar .actions a:hover {
     background-color: #007bff;
-    color: #fff;
+    color: white;
+}
+
+form div {
+    margin-bottom: 15px;
+}
+
+form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+form input, form textarea, form select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: orange;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #e69500;
 }
