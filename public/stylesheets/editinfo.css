@@ -46,7 +46,7 @@ textarea{
     border-radius: 5px;
     box-sizing: border-box;
 }
-.postal-code input{
+.post_code input{
     flex:1;
 }
 

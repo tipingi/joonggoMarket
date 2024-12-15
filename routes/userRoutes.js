@@ -1,5 +1,6 @@
 const express = require('express');
 const pool = require('../config/db'); // 데이터베이스 연결
+const { getUserById, updateUserInfo } = require('../models/userModel');
 const router = express.Router();
 
 // 인증 미들웨어
@@ -14,7 +15,6 @@ function isAuthenticated(req, res, next) {
 router.get('/mypage', isAuthenticated, async (req, res) => {
     const user = req.session.user; // 로그인된 사용자 정보
 
-    console.log(user);
     try {
         // 현재 로그인한 사용자 정보
         const [userInfo] = await pool.query(
@@ -40,6 +40,50 @@ router.get('/mypage', isAuthenticated, async (req, res) => {
             sellHistory,
             buyHistory
         });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
+// GET /editInfo - 정보 수정 페이지 렌더링
+router.get('/editInfo', isAuthenticated, async (req, res) => {
+    try {
+        const userId = req.session.user.id; 
+        const userInfo = await getUserById(userId);
+        
+        console.log(userId);
+        console.log(userInfo);
+
+        res.render('editInfo', { userInfo });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
+// POST /editInfo - 정보 수정 처리
+router.post('/editInfo', isAuthenticated, async (req, res) => {
+    try {
+        const userId = req.session.user.id; 
+        const { password, name, phone, email, address, post_code } = req.body;
+
+        const result = await updateUserInfo({
+            id: userId,
+            password,
+            name,
+            phone,
+            email,
+            address,
+            post_code
+        });
+
+        if (result > 0) {
+            // 정보 업데이트 후 페이지 리프레시나 다른 페이지로 이동
+            res.redirect('/dashboard');
+        } else {
+            res.send('업데이트할 정보가 없습니다.');
+        }
     } catch (error) {
         console.error(error);
         res.status(500).send('Internal Server Error');

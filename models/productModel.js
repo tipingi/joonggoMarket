@@ -18,10 +18,10 @@ async function getProductById(productId) {
 }
 
 // 상품 등록
-async function createProduct({ name, price, description }) {
+async function createProduct({ name, category_id, seller_id, price, description }) {
     const [result] = await pool.query(
-        'INSERT INTO tbl_product (name, price, description, status_id, created_at) VALUES (?, ?, ?, 1, NOW())'
-        , [name, price, description]);
+        'INSERT INTO tbl_product (seller_id, name, category_id, price, description, status_id, created_at) VALUES (?, ?, ?, ?, ?, 1, NOW())'
+        , [seller_id, name, category_id, price, description]);
     return result.insertId; // 새로 추가된 상품의 id 반환
 }
 

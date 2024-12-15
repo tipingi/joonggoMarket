@@ -18,17 +18,22 @@ router.get('/boards', async (req, res) => {
     }
 });
 
-router.get('/boards/new', (req, res) => {
-    const user = req.session.user;
-    res.render('newBoard', { user });
+// 게시글 등록 페이지
+router.get('/boards/new', async (req, res) => {
+    try {
+        const user = req.session.user; 
+        res.render('newBoard', { user });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Internal Server Error');
+    }
 });
 
 // 게시글 등록 (POST /boards)
 router.post('/boards', async (req, res) => {
     const { title, writer_id, content, board_type } = req.body;
     try {
-        await createBoard({ board_type, writer_id, title, content });
-
+        const newBoardId = await createBoard({ title, writer_id, content, board_type });
         res.redirect('/boards');
     } catch (error) {
         console.error(error);
@@ -36,6 +41,20 @@ router.post('/boards', async (req, res) => {
     }
 });
 
+// 특정 게시글 상세 페이지 (GET /boards/:id)
+router.get('/boards/:id', async (req, res) => {
+    const boardId = req.params.id;
+    try {
+        const board = await getBoardById(boardId);
+        if (!board) {
+            return res.status(404).send('게시글을 찾을 수 없습니다.');
+        }
+        res.render('boardDetail', { board });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Internal Server Error');
+    }
+});
 
 // 게시글 수정 (PUT /boards/:id)
 router.put('/boards/:id', async (req, res) => {
@@ -44,7 +63,7 @@ router.put('/boards/:id', async (req, res) => {
     try {
         const updatedCount = await updateBoard(boardId, { title, content, board_type, boardId });
         if (updatedCount === 0) {
-            return res.status(404).send('수정할 상품을 찾을 수 없습니다.');
+            return res.status(404).send('수정할 게시글을 찾을 수 없습니다.');
         }
         res.json({ success: true });
     } catch (error) {

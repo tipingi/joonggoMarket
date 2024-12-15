@@ -3,8 +3,8 @@ const pool = require('../config/db');
 // 모든 게시글 목록 조회
 async function getAllBoards() {
     const [rows] = await pool.query(
-        'SELECT board_id, board_type, tbl_user.name as writer_name, title, content, DATE_FORMAT(created_at, "%Y-%m-%d %H:%i:%s") AS created_at '
-        + 'FROM tbl_board inner join tbl_user on tbl_user.user_id = tbl_board.writer_id '
+        'SELECT board_id, board_type, writer_id, title, content, DATE_FORMAT(created_at, "%Y-%m-%d %H:%i:%s") AS created_at '
+        + 'FROM tbl_board inner join tbl_user on tbl_user.id = tbl_board.writer_id '
         + 'ORDER BY created_at DESC'
     );
     return rows;
