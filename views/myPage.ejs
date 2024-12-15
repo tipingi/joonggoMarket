@@ -94,7 +94,10 @@
                   <td>
                     <%= transaction.transaction_at %>
                   </td>
-                  <td><a href="/reviews/new">리뷰 작성</a></td>
+                  <td>
+                    <a href="/reviews/new/<%= transaction.transaction_id %>/<%= transaction.product_id %>">리뷰 작성</a>
+                </td>
+                
                 </tr>
                 <% }) %>
             </tbody>

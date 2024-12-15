@@ -17,6 +17,7 @@
     <form action="/reviews" method="post">
         <input type="hidden" name="transaction_id" value="<%= transaction.transaction_id %>">
         <input type="hidden" name="product_id" value="<%= product.product_id %>">
+        <input type="hidden" name="buyer_id" value="<%= transaction.buyer_id %>">
 
         <label>평점(1~5):</label>
         <input type="number" name="score" min="1" max="5" required>

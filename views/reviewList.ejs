@@ -1,33 +1,63 @@
 <!DOCTYPE html>
-<html lang = "en">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>나의 리뷰</title>
-    <link rel="stylesheet" href="/stylesheets/review.css">
+    <title>리뷰 목록</title>
+    <link rel="stylesheet" href="/stylesheets/board.css">
 </head>
-<body>
-    <div class="container">
-        <h1>내 리뷰 관리</h1>
 
-        <table>
+<body>
+    <div class="title-bar">
+        <h1>리뷰 목록</h1>
+        <div class="actions">
+            <a href="/myPage">내 정보로 돌아가기</a>
+        </div>
+    </div>
+
+    <% if (boardPosts && boardPosts.length > 0) { %>
+        <table border="1" cellpadding="10" cellspacing="0">
             <thead>
                 <tr>
-                    <th>구매자 ID</th>
-                    <th>평점</th>
-                    <th>리뷰 내용</th>
+                    <th>유형</th>
+                    <th>제목</th>
+                    <th>작성자</th>
+                    <th>등록일</th>
+                    <th>상세보기</th>
                 </tr>
             </thead>
             <tbody>
-                <% reviews.forEach(review => { %>
-                    <tr>
-                        <td><%= review.writer_id %></td>
-                        <td><%= review.score %></td>
-                        <td><%= review.content %></td>
+                <% boardPosts.forEach(board=> { %>
+                        <tr>
+                            <!-- 1. 자유게시판, 2. 삽니다, 3. 팝니다  -->
+                        <td>
+                            <% if (board.board_type === 1) { %>
+                                자유게시판
+                            <% } else if (board.board_type === 2) { %>
+                                삽니다
+                            <% } else if (board.board_type === 3) { %>
+                                팝니다
+                            <% } else { %>
+                                알 수 없음
+                            <% } %>
+                        </td>
+                        <td>
+                            <%= board.title %>
+                        </td>
+                        <td>
+                            <%= board.writer_id %>
+                        </td>
+                        <td>
+                            <%= board.created_at %>
+                        </td>
                     </tr>
-                <% }) %>
+                    <% }) %>
             </tbody>
         </table>
-    </div>
+        <% } else { %>
+            <p>등록된 게시글이 없습니다.</p>
+            <% } %>
 </body>
+
 </html>
