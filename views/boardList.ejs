@@ -25,32 +25,34 @@
                     <th>제목</th>
                     <th>작성자</th>
                     <th>등록일</th>
+                    <th>상세보기</th>
                 </tr>
             </thead>
             <tbody>
-                <% boardPosts.forEach(post=> { %>
-                    <tr>
-                        <!-- 1. 자유게시판, 2. 삽니다, 3. 팝니다  -->
+                <% boardPosts.forEach(board=> { %>
+                        <tr>
+                            <!-- 1. 자유게시판, 2. 삽니다, 3. 팝니다  -->
                         <td>
-                            <% if (post.board_type === 1) { %>
+                            <% if (board.board_type === 1) { %>
                                 자유게시판
-                            <% } else if (post.board_type === 2) { %>
+                            <% } else if (board.board_type === 2) { %>
                                 삽니다
-                            <% } else if (post.board_type === 3) { %>
+                            <% } else if (board.board_type === 3) { %>
                                 팝니다
                             <% } else { %>
                                 알 수 없음
                             <% } %>
                         </td>
                         <td>
-                            <%= post.title %>
+                            <%= board.title %>
                         </td>
                         <td>
-                            <%= post.writer_name %>
+                            <%= board.writer_id %>
                         </td>
                         <td>
-                            <%= post.created_at %>
+                            <%= board.created_at %>
                         </td>
+                        <td><a href="/boards/<%= board.board_id %>">자세히 보기</a></td>
                     </tr>
                     <% }) %>
             </tbody>

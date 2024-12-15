@@ -15,22 +15,22 @@ router.get('/dashboard', isAuthenticated, async (req, res) => {
     const user = req.session.user;
 
     try {
-        const [boardPosts] = await pool.query('SELECT tbo.board_type, tur.name, tbo.title, DATE_FORMAT(tbo.created_at, "%Y-%m-%d %H:%i:%s") AS created_at ' +
-            'FROM tbl_board tbo ' +
-            'inner join tbl_user tur on tbo.writer_id = tur.user_id ' +
-            'ORDER BY tbo.created_at DESC LIMIT 5');
+        const [boardPosts] = await pool.query(
+            'SELECT board_id, board_type, writer_id, title, content, DATE_FORMAT(created_at, "%Y-%m-%d %H:%i:%s") AS created_at '
+            + 'FROM tbl_board inner join tbl_user on tbl_user.id = tbl_board.writer_id '
+            + 'ORDER BY created_at DESC LIMIT 7');
 
         const [popularProducts] = await pool.query('SELECT tca.name as category_name, tpr.name as product_name, tpr.view_count ' +
             'FROM tbl_product tpr ' +
-            'inner join tbl_category tca on tpr.category_id = tca.category_id ORDER BY view_count DESC LIMIT 5');
+            'inner join tbl_category tca on tpr.category_id = tca.category_id ORDER BY view_count DESC LIMIT 6');
 
         const [recentProducts] = await pool.query('SELECT tpr.name as product_name, DATE_FORMAT(tpr.created_at, "%Y-%m-%d %H:%i:%s")  AS created_at ' +
             'FROM tbl_product tpr ' +
-            'ORDER BY created_at DESC LIMIT 5');
+            'ORDER BY created_at DESC LIMIT 6');
 
         const [recentTransactions] = await pool.query('SELECT tpr.name as product_name,  DATE_FORMAT(ttr.transaction_at, "%Y-%m-%d %H:%i:%s")  AS transaction_at ' +
             'FROM tbl_transaction ttr ' +
-            'inner join tbl_product tpr on ttr.product_id = tpr.product_id ORDER BY transaction_at DESC LIMIT 5');
+            'inner join tbl_product tpr on ttr.product_id = tpr.product_id ORDER BY transaction_at DESC LIMIT 6');
 
         res.render('dashboard', {
             user,

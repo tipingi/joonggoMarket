@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>상품 상세 정보</title>
+    <link rel="stylesheet" href="/stylesheets/board.css">
+</head>
+
+<body>
+    <div class="title-bar">
+        <h1>게시글 상세 정보</h1>
+        <div class="actions">
+            <a href="/boards">게시글 목록으로 돌아가기</a>
+        </div>
+    </div>
+
+    <% if (board) { %>
+        <p><strong>게시글 ID:</strong>
+            <%= board.board_id %>
+        </p>
+        <p><strong>제목:</strong>
+            <%= board.title %>
+        </p>
+        <p><strong>내용:</strong>
+            <%= board.content %>
+        </p>
+        <% } else { %>
+            <p>게시글 정보를 가져올 수 없습니다.</p>
+            <% } %>
+</body>
+
+</html>

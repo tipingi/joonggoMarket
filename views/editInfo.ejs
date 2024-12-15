@@ -1,32 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>내 정보 편집</title>
     <link rel="stylesheet" href="/stylesheets/editinfo.css">
 </head>
+
 <body>
-    <div class = "container">
+    <div class="container">
         <h1>내 정보 편집</h1>
-        <form method = "POST" action = "/editInfo">
-            <label for ="user_id">유저 ID: </label>
-            <input type = "text" id = "user_id" name = "user_id" value = "<%= userInfo.id %>" readonly>
+        <form method="POST" action="/editInfo">
+            <label for="id">유저 ID: </label>
+            <input type="text" id="id" name="id" value="<%= userInfo.id %>" readonly>
             <label for="password">비밀번호: </label>
             <input type="password" id="password" name="password">
             <label for="name">이름: </label>
-            <input type = "text" id = "name" name = "name" value = "<%= userInfo.name %>">
-            <label for ="phone">전화번호:</label>
-            <input type = "text" name = "phone" value = "<%= userInfo.phone %>"></label><br>
-            <label for = "email">이메일:</label> 
-            <input type = "email" name = "email" value = "<%= userInfo.email %>">
+            <input type="text" id="name" name="name" value="<%= userInfo.name %>">
+            <label for="phone">전화번호:</label>
+            <input type="text" name="phone" value="<%= userInfo.phone %>"></label><br>
+            <label for="email">이메일:</label>
+            <input type="email" name="email" value="<%= userInfo.email %>">
             <label for="address">주소: </label>
-            <div class = "postal-code">
-                <input type="text" id="postal-code" name = "postal-code" placeholder="우편번호">
-                <textarea id = "address" name = "address"><%= userInfo.address %></textarea>
+            <div class="post_code">
+                <input type="text" id="post_code" name="post_code" placeholder="우편번호">
+                <textarea id="address" name="address"><%= userInfo.address %></textarea>
             </div>
-            <button type = "submit">저장</button>
+            <button type="submit">저장</button>
         </form>
     </div>
 </body>
+
 </html>

@@ -1,5 +1,10 @@
 const express = require('express');
 const router = express.Router();
+
+const {
+    getAllCategories
+} = require('../models/categoryModel');
+
 const {
     getAllProducts,
     getProductById,
@@ -19,8 +24,28 @@ router.get('/products', async (req, res) => {
     }
 });
 
-router.get('/products/new', (req, res) => {
-    res.render('newProduct');
+// 상품 등록 페이지
+router.get('/products/new', async (req, res) => {
+    try {
+        const categories = await getAllCategories();
+        const user = req.session.user; // 로그인한 사용자 정보라 가정
+        res.render('newProduct', { user, categories });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
+// 상품 등록 (POST /products)
+router.post('/products', async (req, res) => {
+    const { name, category_id, seller_id, price, description } = req.body;
+    try {
+        const newProductId = await createProduct({ name, category_id, seller_id, price, description });
+        res.redirect('/products');
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Internal Server Error');
+    }
 });
 
 // 특정 상품 상세 페이지 (GET /products/:id)
@@ -38,18 +63,6 @@ router.get('/products/:id', async (req, res) => {
     }
 });
 
-// 상품 등록 (POST /products)
-router.post('/products', async (req, res) => {
-    const { name, price, description } = req.body;
-    try {
-        const newProductId = await createProduct({ name, price, description });
-        res.json({ success: true, product_id: newProductId });
-    } catch (error) {
-        console.error(error);
-        res.status(500).send('Internal Server Error');
-    }
-});
-
 // 상품 수정 (PUT /products/:id)
 router.put('/products/:id', async (req, res) => {
     const productId = req.params.id;
@@ -58,21 +71,6 @@ router.put('/products/:id', async (req, res) => {
         const updatedCount = await updateProduct(productId, { name, price, description });
         if (updatedCount === 0) {
             return res.status(404).send('수정할 상품을 찾을 수 없습니다.');
-        }
-        res.json({ success: true });
-    } catch (error) {
-        console.error(error);
-        res.status(500).send('Internal Server Error');
-    }
-});
-
-// 상품 삭제 (DELETE /products/:id)
-router.delete('/products/:id', async (req, res) => {
-    const productId = req.params.id;
-    try {
-        const deletedCount = await deleteProduct(productId);
-        if (deletedCount === 0) {
-            return res.status(404).send('삭제할 상품을 찾을 수 없습니다.');
         }
         res.json({ success: true });
     } catch (error) {
